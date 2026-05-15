@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Aakash Kumar — Backend / AI Infrastructure engineer. Portfolio styled as a live ops dashboard." />
+    <title>backend.os — Aakash Kumar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- ░░░░ STATUS BAR ░░░░ -->
+    <header class="statusbar" role="banner">
+      <div class="sb-left">
+        <span class="sb-prompt">aakash@backend.os</span>
+        <span class="sb-sep">:</span>
+        <span class="sb-path" id="sb-path">~/overview</span>
+        <span class="sb-cursor">▍</span>
+      </div>
+      <div class="sb-right">
+        <span class="chip chip-ok"><span class="dot"></span>env=production</span>
+        <span class="chip" title="build SHA">build <code id="build-sha">7f3a91c</code></span>
+        <span class="chip" title="region">region <code>ap-south-1</code></span>
+        <span class="chip" title="uptime since session start">up <code id="uptime">00:00:00</code></span>
+        <span class="chip" title="local clock"><code id="clock">--:--:--</code></span>
+      </div>
+    </header>
+
+    <div class="shell">
+      <!-- ░░░░ LEFT NAV ░░░░ -->
+      <aside class="sidebar" role="navigation" aria-label="Primary">
+        <div class="sb-block">
+          <div class="sb-block-title">NAMESPACES</div>
+          <ul class="nav" id="nav">
+            <li data-tab="overview" class="active"><span class="key">1</span><span>overview</span><span class="badge">●</span></li>
+            <li data-tab="services"><span class="key">2</span><span>services</span><span class="badge">5</span></li>
+            <li data-tab="topology"><span class="key">3</span><span>topology</span><span class="badge">↔</span></li>
+            <li data-tab="deploys"><span class="key">4</span><span>deploys</span><span class="badge">2</span></li>
+            <li data-tab="writing"><span class="key">5</span><span>writing</span><span class="badge">3</span></li>
+            <li data-tab="contact"><span class="key">6</span><span>contact</span><span class="badge">→</span></li>
+          </ul>
+        </div>
+
+        <div class="sb-block">
+          <div class="sb-block-title">CLUSTER</div>
+          <div class="mini-stat"><span>nodes</span><b>3</b></div>
+          <div class="mini-stat"><span>pods</span><b>17</b></div>
+          <div class="mini-stat"><span>p99 ms</span><b id="ms-p99">42</b></div>
+          <div class="mini-stat"><span>err rate</span><b class="g" id="ms-err">0.03%</b></div>
+        </div>
+
+        <div class="sb-block">
+          <div class="sb-block-title">SHORTCUTS</div>
+          <div class="kbd-line"><kbd>1</kbd>…<kbd>6</kbd><span>switch tab</span></div>
+          <div class="kbd-line"><kbd>?</kbd><span>help</span></div>
+          <div class="kbd-line"><kbd>g</kbd><span>top</span></div>
+        </div>
+
+        <div class="sb-foot">
+          <a href="./Aakash_Kumar_SDE2.pdf" target="_blank" rel="noopener" class="dl" data-bind-resume>↓ download resume.pdf</a>
+        </div>
+      </aside>
+
+      <!-- ░░░░ MAIN VIEWPORT ░░░░ -->
+      <main class="viewport" id="viewport">
+
+        <!-- ───── OVERVIEW ───── -->
+        <section class="view" data-view="overview" aria-label="Overview">
+          <div class="hero">
+            <pre class="ascii" aria-hidden="true">
+ ┌─ aakash kumar ──────────────────────────────────────┐
+ │  backend · ai infrastructure · distributed systems  │
+ └─────────────────────────────────────────────────────┘</pre>
+            <h1 data-bind="hero.h1">Designing autonomous infrastructure<br/>for production-grade systems.</h1>
+            <p class="lede" data-bind="hero.lede">
+              Backend engineer with 3+ years building high-throughput platforms,
+              latency-critical APIs, and MCP/RAG-powered agents that triage real
+              incidents and keep production inside SLA.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="mailto:aakashkumarjha2000@gmail.com" data-link="email">→ email</a>
+              <a class="btn" href="https://linkedin.com/in/imaakashjha" target="_blank" rel="noopener" data-link="linkedin">linkedin</a>
+              <a class="btn" href="https://medium.com/@aakashkumar2001jha" target="_blank" rel="noopener" data-link="medium">medium</a>
+              <a class="btn ghost" href="./Aakash_Kumar_SDE2.pdf" target="_blank" rel="noopener" data-bind-resume>resume.pdf ↗</a>
+            </div>
+          </div>
+
+          <div class="grid-4 metrics">
+            <div class="metric-card">
+              <div class="m-label">alerts triaged</div>
+              <div class="m-value"><span data-count="200">0</span><span class="suf">+</span></div>
+              <div class="m-spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="m-sub">agentic incident workflow · 24×7</div>
+            </div>
+            <div class="metric-card">
+              <div class="m-label">api latency cut</div>
+              <div class="m-value"><span data-count="83">0</span><span class="suf">%</span></div>
+              <div class="m-spark down"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="m-sub">p99 on hot path · MySQL JSON index</div>
+            </div>
+            <div class="metric-card">
+              <div class="m-label">routes automated</div>
+              <div class="m-value"><span data-count="95">0</span><span class="suf">%</span></div>
+              <div class="m-spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="m-sub">N concurrent managers · optimistic locking</div>
+            </div>
+            <div class="metric-card">
+              <div class="m-label">incident SLA</div>
+              <div class="m-value"><span data-count="15">0</span><span class="suf">m</span></div>
+              <div class="m-spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="m-sub">met by autonomous remediation</div>
+            </div>
+          </div>
+
+          <div class="panels-2">
+            <div class="panel">
+              <div class="panel-head">
+                <span>$ whoami</span>
+                <span class="panel-tag">bio</span>
+              </div>
+              <pre class="bio bio-block">
+> 3+ yrs · SDE @ Locus (IKEA), prev. Clover Bay
+> stack: Java · Spring Boot · Go · Python · Kafka · MySQL
+> ai infra: MCP · Claude 3.5 · RAG · Ollama · vector search
+> recent wins:
+   - cut prod CPU 15% via MySQL multi-value JSON index
+   - shipped MCP context proxy (Go) for agent grounding
+   - autonomous remediation for 200+ unique alert types
+> currently: WhatsApp CRM backend · MCP proxy v2</pre>
+            </div>
+
+            <div class="panel">
+              <div class="panel-head">
+                <span>$ stack --top</span>
+                <span class="panel-tag">capabilities</span>
+              </div>
+              <div class="stack">
+                <div class="row"><b>languages</b><span>java · python · go · sql · node</span></div>
+                <div class="row"><b>backend</b><span>spring boot · reactive · fastapi · microservices</span></div>
+                <div class="row"><b>distributed</b><span>kafka · saga · cqrs · resilience4j · gateway</span></div>
+                <div class="row"><b>ai infra</b><span>mcp · claude 3.5 · ollama · rag · vector</span></div>
+                <div class="row"><b>data</b><span>postgres · mysql · couchbase · redis · sqlite</span></div>
+                <div class="row"><b>ops</b><span>aws · gcp · docker · jenkins · groundcover</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ───── SERVICES ───── -->
+        <section class="view" data-view="services" hidden aria-label="Services">
+          <div class="view-head">
+            <h2>services <span class="muted">/ projects running in prod</span></h2>
+            <div class="filter">
+              <span class="f-pill active">all</span>
+              <span class="f-pill">ai-infra</span>
+              <span class="f-pill">distributed</span>
+              <span class="f-pill">data</span>
+            </div>
+          </div>
+
+          <div class="svc-table">
+            <div class="svc-head">
+              <span>status</span><span>service</span><span>version</span><span>req/s</span><span>uptime</span><span></span>
+            </div>
+
+            <details class="svc" open>
+              <summary>
+                <span class="st"><i class="d g"></i>running</span>
+                <span class="name"><b>svc-incident-agent</b><em>INC-AGENT-01</em></span>
+                <span class="ver">v2.3.1</span>
+                <span class="rps" data-rps="42">42</span>
+                <span class="up">312d 04h</span>
+                <span class="exp">▾</span>
+              </summary>
+              <div class="svc-body">
+                <p>MCP + Claude 3.5 workflow that triages production alerts autonomously by injecting live codebase context, historical Slack mitigations, telemetry traces, and diagnostic playbooks into each investigation.</p>
+                <div class="kv"><b>situation</b><span>200+ unique alert types across NewRelic / Opsgenie / Groundcover. Each one drained 30–60 min of engineer time digging through logs, code, and prior Slack threads.</span></div>
+                <div class="kv"><b>task</b><span>cut human investigation toil while still meeting a hard 15-minute SLA on critical alerts — without changing the alerting source.</span></div>
+                <div class="kv"><b>action</b><span>built an MCP-tool stack the agent can call: live code search (semantic + grep), Slack mitigation history lookup, trace/log correlation, Jira auto-creation. Slack daemon orchestrates dispatch; Devin handles long-running fixes.</span></div>
+                <div class="kv"><b>result</b><span><b class="g-num">~70%</b> drop in manual investigation time · <b class="g-num">200+</b> alert types now triaged autonomously · <b class="g-num">15-min</b> critical-SLA held without paging an engineer.</span></div>
+                <div class="pipe">
+                  <span>alert</span><i></i><span>mcp tools</span><i></i><span>context</span><i></i><span>rca + jira</span>
+                </div>
+                <div class="tags"><span>MCP</span><span>Claude 3.5</span><span>Groundcover</span><span>Jira</span><span>Slack</span></div>
+              </div>
+            </details>
+
+            <details class="svc">
+              <summary>
+                <span class="st"><i class="d g"></i>running</span>
+                <span class="name"><b>svc-mcp-context-proxy</b><em>MCP-RAG-02</em></span>
+                <span class="ver">v1.4.0</span>
+                <span class="rps" data-rps="118">118</span>
+                <span class="up">96d 21h</span>
+                <span class="exp">▾</span>
+              </summary>
+              <div class="svc-body">
+                <p>Go localhost HTTP proxy intercepting Claude Code's MCP calls, caching upstream responses, and injecting token-budgeted code context from a local vector index into every tool response.</p>
+                <div class="kv"><b>situation</b><span>agents calling MCP tools had no grounding in private codebases. Every prompt re-paid the cost of fetching context, and re-runs of identical calls hit the upstream provider needlessly.</span></div>
+                <div class="kv"><b>task</b><span>deliver repo-aware, token-budgeted context to every MCP tool call without modifying the IDE, the agent, or the upstream MCP servers.</span></div>
+                <div class="kv"><b>action</b><span>Go proxy on <code>localhost:7070</code> · SQLite response cache keyed by source + request-body hash · file watcher for incremental re-index · Ollama embeddings + cosine top-k search · <code>/patterns/feedback</code> loop promotes query shapes that produced useful Groundcover results.</span></div>
+                <div class="kv"><b>result</b><span><b class="g-num">71%</b> cache hit rate on repeat tool calls · <b class="g-num">~8ms</b> median context-injection latency · pattern catalog converts oncall sessions into reusable institutional memory.</span></div>
+                <pre class="mini-term">
+> request_hash  → cache_miss
+> embed_query   → cosine_search(top_k=6)
+> inject ctx[6] → upstream</pre>
+                <div class="tags"><span>Go</span><span>SQLite</span><span>Ollama</span><span>RAG</span><span>Vector Search</span></div>
+              </div>
+            </details>
+
+            <details class="svc">
+              <summary>
+                <span class="st"><i class="d g"></i>running</span>
+                <span class="name"><b>svc-journey-planner</b><em>DIST-SYS-03</em></span>
+                <span class="ver">v3.0.7</span>
+                <span class="rps" data-rps="87">87</span>
+                <span class="up">540d 11h</span>
+                <span class="exp">▾</span>
+              </summary>
+              <div class="svc-body">
+                <p>Distributed permanent journey planning service that lets N concurrent field managers build weekly route plans against shared inventory of stops, without serial locking and without double-allocation.</p>
+                <div class="kv"><b>situation</b><span>multiple field managers concurrently authored weekly journey plans against the same pool of stops. Naïve locking forced them into a serial queue; no locking caused double-allocation and downstream conflicts.</span></div>
+                <div class="kv"><b>task</b><span>support concurrent route authoring at scale while honouring territory, capacity, and visit-frequency constraints — and keep a defensible audit trail for every assignment.</span></div>
+                <div class="kv"><b>action</b><span>optimistic-locking allocation with bounded exponential backoff on conflict · per-stop ownership state with versioned writes · constraint engine for territory / capacity / visit-freq rules · append-only audit log for every assignment and conflict-resolution decision.</span></div>
+                <div class="kv"><b>result</b><span><b class="g-num">95%</b> of routes generated without human intervention · <b class="g-num">15+ hrs</b> saved per manager per week · zero double-allocation observed in audit window.</span></div>
+                <div class="pjp">
+                  <div><b>inputs</b><span>stops · managers · visit rules</span></div>
+                  <div><b>planner</b><span>concurrent allocation · optimistic locking · bounded backoff</span></div>
+                  <div><b>state</b><span>ownership · conflict resolution · audit trail</span></div>
+                  <div><b>output</b><span>stable weekly journey plans · 95% automated</span></div>
+                </div>
+                <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span><span>Optimistic Locking</span></div>
+              </div>
+            </details>
+
+            <details class="svc">
+              <summary>
+                <span class="st"><i class="d g"></i>running</span>
+                <span class="name"><b>svc-json-mv-index</b><em>DB-OPT-04</em></span>
+                <span class="ver">v1.0.0</span>
+                <span class="rps" data-rps="2410">2,410</span>
+                <span class="up">421d 09h</span>
+                <span class="exp">▾</span>
+              </summary>
+              <div class="svc-body">
+                <p>MySQL 8.0.17+ multi-value index over a nested JSON array column, migrating a high-traffic hot query from full JSON scan to direct B-tree lookup.</p>
+                <div class="kv"><b>situation</b><span>a high-QPS hot query filtered rows by membership in a JSON-array column. Every call triggered a full column scan + JSON parse across millions of rows. p99 latency climbed, CPU saturated nightly, false-positive pager alerts followed.</span></div>
+                <div class="kv"><b>task</b><span>bring the hot path under an index <em>without</em> denormalising the JSON column, splitting the table, or rewriting upstream callers.</span></div>
+                <div class="kv"><b>action</b><span>added a MySQL 8.0.17+ multi-value index over the array path · rewrote the predicate from <code>JSON_CONTAINS</code> to <code>MEMBER OF</code> · verified <code>EXPLAIN</code> showed index use · rolled out behind a feature flag with shadow-traffic comparison.</span></div>
+                <div class="kv"><b>result</b><span><b class="g-num">~15%</b> reduction in prod CPU on the affected stack · p99 on the hot query dropped from <b class="g-num">~740ms → ~11ms</b> · <b class="g-num">20–30</b> false-positive pager alerts/week eliminated.</span></div>
+                <div class="diff">
+                  <div class="before"><b>BEFORE</b><code>JSON_CONTAINS(lower(json_extract(doc, '$.tags')), ?)</code></div>
+                  <div class="arrow">→</div>
+                  <div class="after"><b>AFTER</b><code>? MEMBER OF (doc-&gt;'$.tags')</code></div>
+                </div>
+                <div class="tags"><span>MySQL</span><span>JSON Index</span><span>Performance</span><span>Query Optimisation</span></div>
+              </div>
+            </details>
+
+            <details class="svc">
+              <summary>
+                <span class="st"><i class="d a"></i>deploying</span>
+                <span class="name"><b>svc-whatsapp-crm</b><em>BUILD-05</em></span>
+                <span class="ver">v0.6.2-rc</span>
+                <span class="rps" data-rps="0">—</span>
+                <span class="up">canary</span>
+                <span class="exp">▾</span>
+              </summary>
+              <div class="svc-body">
+                <p>Multi-tenant CRM built on the WhatsApp Business API — horizontal scaling with isolated tenant data, conversation state management, and webhook-driven message routing.</p>
+                <div class="kv"><b>situation</b><span>SMBs needed a CRM on WhatsApp Business API but couldn't justify per-tenant infrastructure cost; existing offerings co-mingled tenant data or required heavyweight onboarding.</span></div>
+                <div class="kv"><b>task</b><span>ship a multi-tenant CRM with strict tenant isolation, idempotent webhook handling, and a clean horizontal-scale boundary — runnable on a single GCP project.</span></div>
+                <div class="kv"><b>action</b><span>Spring Boot service on GCP · schema-per-tenant isolation in PostgreSQL · idempotent webhook consumer keyed by message-id · finite-state machine modelling conversation lifecycle · async outbound delivery worker decoupled from inbound webhook ack path.</span></div>
+                <div class="kv"><b>result</b><span>currently in canary · sub-second webhook ack on inbound messages · clean per-tenant scaling boundary, ready for first design-partner rollout.</span></div>
+                <div class="tags"><span>Java</span><span>Spring Boot</span><span>WhatsApp Business API</span><span>PostgreSQL</span><span>GCP</span><span>Webhooks</span></div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ───── TOPOLOGY ───── -->
+        <section class="view" data-view="topology" hidden aria-label="Topology">
+          <div class="view-head">
+            <h2>topology <span class="muted">/ service mesh</span></h2>
+            <span class="muted small">live · animated</span>
+          </div>
+          <div class="topo-wrap">
+            <svg id="topo" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+            <div class="topo-legend">
+              <span><i class="d g"></i> running</span>
+              <span><i class="d a"></i> deploying</span>
+              <span><i class="d b"></i> dependency</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ───── DEPLOYS ───── -->
+        <section class="view" data-view="deploys" hidden aria-label="Deploys">
+          <div class="view-head">
+            <h2>deploys <span class="muted">/ career commit log</span></h2>
+          </div>
+          <div class="deploys">
+            <article class="deploy">
+              <div class="dp-meta">
+                <span class="dp-sha">#d4a2f81</span>
+                <span class="dp-date">2024-05-14</span>
+                <span class="chip chip-ok"><span class="dot"></span>active</span>
+              </div>
+              <h3>Software Development Engineer · Locus (IKEA)</h3>
+              <p>Agentic observability workflows, autonomous remediation daemons, distributed journey planning, high-load queueing optimizations, MySQL multi-value JSON index migrations cutting prod CPU by 15%.</p>
+              <div class="dp-changes">
+                <span class="add">+ agentic-remediation</span>
+                <span class="add">+ json-mv-index</span>
+                <span class="add">+ journey-planner-v3</span>
+                <span class="rm">− manual-triage-loop</span>
+              </div>
+            </article>
+
+            <article class="deploy">
+              <div class="dp-meta">
+                <span class="dp-sha">#a1f70b3</span>
+                <span class="dp-date">2022-06 → 2024-05</span>
+                <span class="chip"><span class="dot d-faint"></span>archived</span>
+              </div>
+              <h3>Associate SDE · Clover Bay Technologies</h3>
+              <p>Reactive Spring Boot notification infrastructure, Kafka-based async delivery, Couchbase/Redis e-commerce systems, Python bulk APIs on GCP, services with 90% test coverage.</p>
+              <div class="dp-changes">
+                <span class="add">+ reactive-notification-stack</span>
+                <span class="add">+ kafka-async-delivery</span>
+                <span class="add">+ couchbase-redis-stack</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ───── WRITING ───── -->
+        <section class="view" data-view="writing" hidden aria-label="Writing">
+          <div class="view-head">
+            <h2>writing <span class="muted">/ blogs &amp; signals</span></h2>
+            <a class="muted small" href="https://medium.com/@aakashkumar2001jha" target="_blank" rel="noopener">view all on Medium ↗</a>
+          </div>
+
+          <div class="blog-grid">
+            <a class="blog-card" href="https://medium.com/@aakashkumar2001jha/beyond-rag-ai-agents-with-operational-memory-4dceb60b90e9" target="_blank" rel="noopener">
+              <div class="bc-meta">
+                <span class="bc-cat">AI · Agents</span>
+                <span class="bc-rt">5 min</span>
+              </div>
+              <h3>Beyond RAG: AI Agents With Operational Memory</h3>
+              <p>Why general-purpose LLMs stumble when dropped into real codebases — and what operational memory looks like as a substrate for less confused agents.</p>
+              <div class="bc-foot">
+                <div class="bc-tags"><span>Claude Code</span><span>LLM</span><span>Developer Tools</span></div>
+                <span class="bc-link">read on Medium ↗</span>
+              </div>
+            </a>
+
+            <a class="blog-card" href="https://medium.com/@aakashkumar2001jha/clearcast-architecture-notes-from-a-privacy-first-audio-enhancer-d49647f31d42" target="_blank" rel="noopener">
+              <div class="bc-meta">
+                <span class="bc-cat">Backend · Architecture</span>
+                <span class="bc-rt">5 min</span>
+              </div>
+              <h3>ClearCast: Architecture Notes from a Privacy-First Audio Enhancer</h3>
+              <p>Architectural decisions behind a privacy-first audio enhancement tool — the gap between recording simplicity and final audio polish, and how to keep user data local.</p>
+              <div class="bc-foot">
+                <div class="bc-tags"><span>Java</span><span>Spring Boot</span><span>Whisper</span></div>
+                <span class="bc-link">read on Medium ↗</span>
+              </div>
+            </a>
+
+            <a class="blog-card" href="https://medium.com/@aakashkumar2001jha/mastering-reactive-tracing-in-spring-boot-3-a-comprehensive-guide-to-achieving-seamless-29c1229177ca" target="_blank" rel="noopener">
+              <div class="bc-meta">
+                <span class="bc-cat">Backend · Observability</span>
+                <span class="bc-rt">3 min</span>
+              </div>
+              <h3>Mastering Reactive Tracing in Spring Boot 3</h3>
+              <p>A guide to wiring tracing through reactive Spring Boot 3 applications — propagating context across the async boundary without losing visibility.</p>
+              <div class="bc-foot">
+                <div class="bc-tags"><span>Spring Boot</span><span>Reactive</span><span>Micrometer</span></div>
+                <span class="bc-link">read on Medium ↗</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="signal-row">
+            <a class="signal-card" href="https://medium.com/@aakashkumar2001jha" target="_blank" rel="noopener">
+              <span class="sc-icon">📝</span>
+              <div>
+                <h4>follow on Medium</h4>
+                <p>long-form notes on backend systems, agentic AI infra, and production engineering.</p>
+              </div>
+              <span class="sc-arrow">↗</span>
+            </a>
+            <a class="signal-card" href="https://leetcode.com" target="_blank" rel="noopener">
+              <span class="sc-icon">⚡</span>
+              <div>
+                <h4>350+ LeetCode problems solved</h4>
+                <p>medium / hard focus — trees, graphs, dp, concurrency.</p>
+              </div>
+              <span class="sc-arrow">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ───── CONTACT ───── -->
+        <section class="view" data-view="contact" hidden aria-label="Contact">
+          <div class="view-head">
+            <h2>contact <span class="muted">/ exec</span></h2>
+          </div>
+          <div class="contact-grid">
+            <div class="panel">
+              <div class="panel-head"><span>$ contact --list</span><span class="panel-tag">channels</span></div>
+              <div class="ch">
+                <a href="mailto:aakashkumarjha2000@gmail.com" class="ch-row">
+                  <b>email</b><code>aakashkumarjha2000@gmail.com</code><span class="copy" data-copy="aakashkumarjha2000@gmail.com">copy</span>
+                </a>
+                <a href="https://linkedin.com/in/imaakashjha" target="_blank" rel="noopener" class="ch-row">
+                  <b>linkedin</b><code>/in/imaakashjha</code><span class="copy" data-copy="https://linkedin.com/in/imaakashjha">copy</span>
+                </a>
+                <a href="https://medium.com/@aakashkumar2001jha" target="_blank" rel="noopener" class="ch-row">
+                  <b>medium</b><code>@aakashkumar2001jha</code><span class="copy" data-copy="https://medium.com/@aakashkumar2001jha">copy</span>
+                </a>
+                <a href="https://leetcode.com" target="_blank" rel="noopener" class="ch-row">
+                  <b>leetcode</b><code>350+ solved</code><span class="copy" data-copy="leetcode profile">copy</span>
+                </a>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><span>$ open-to</span><span class="panel-tag">availability</span></div>
+              <pre class="bio open-to">
+> backend platforms
+> ai infrastructure / agentic systems
+> observability automation
+> systems where ownership spans
+   design · impl · perf · ops
+> response time: &lt; 24h</pre>
+              <a class="btn primary block" href="mailto:aakashkumarjha2000@gmail.com" data-link="email">→ start a conversation</a>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- ░░░░ LIVE LOG TAIL ░░░░ -->
+    <footer class="logtail" aria-label="Live log tail">
+      <span class="lt-label">tail -f /var/log/backend.os</span>
+      <span class="lt-meta">
+        <span class="lvl info" id="lt-lvl">INFO</span>
+        <span class="lt-ts" id="lt-ts">--:--:--</span>
+      </span>
+      <div class="lt-stream" id="lt-stream"></div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!--
+      ░░░░ EDIT-ME: live log tail content ░░░░
+      Each line in the rotating footer ticker is one entry below.
+      Allowed levels: INFO | WARN | DEBG | ERR
+      Edit, add, or remove entries freely — script auto-cycles through them.
+    -->
+    <script type="application/json" id="log-data">
+    [
+      { "lvl": "INFO", "msg": "incident-agent: alert NewRelic#payment-latency triaged · RCA generated in 4m21s" },
+      { "lvl": "INFO", "msg": "mcp-proxy: cache_hit_ratio=0.71  embedded_repos=4  ctx_budget=8k" },
+      { "lvl": "DEBG", "msg": "journey-planner: optimistic-lock retry  mgr=482  backoff=180ms" },
+      { "lvl": "INFO", "msg": "json-mv-index: hot query p99=11ms (was 740ms pre-migration)" },
+      { "lvl": "WARN", "msg": "whatsapp-crm: webhook retry 2/5  tenant=acme  next_in=4s" },
+      { "lvl": "INFO", "msg": "groundcover: pattern catalog promoted 3 queries to positive" },
+      { "lvl": "INFO", "msg": "incident-agent: pulled prior mitigations from #bft-on-call-track1" },
+      { "lvl": "DEBG", "msg": "kafka.async-delivery: lag=12  consumer=notif-svc-c3" },
+      { "lvl": "INFO", "msg": "deploy d4a2f81 succeeded · region=ap-south-1 · canary=1.5%" },
+      { "lvl": "INFO", "msg": "mcp-proxy: cosine_search top_k=6  median_latency=8ms" }
+    ]
+    </script>
+
+    <script src="./loader.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

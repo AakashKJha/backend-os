@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "name": "Aakash Kumar",
+    "title": "Backend / AI Infrastructure",
+    "resumeUrl": "https://drive.google.com/file/d/1vOUxWt7bm1VtRq-Giqj2CGG4QbDPrcng/view?usp=drive_link"
+  },
+  "hero": {
+    "h1": "Designing autonomous infrastructure<br/>for production-grade systems.",
+    "lede": "Backend engineer with 3+ years building high-throughput platforms, latency-critical APIs, and MCP/RAG-powered agents that triage real incidents and keep production inside SLA."
+  },
+  "links": {
+    "email":    "aakashkumarjha2000@gmail.com",
+    "linkedin": "https://linkedin.com/in/imaakashjha",
+    "medium":   "https://medium.com/@aakashkumar2001jha",
+    "leetcode": "https://leetcode.com"
+  },
+  "metrics": [
+    { "label": "alerts triaged",  "value": 200, "suffix": "+",      "sub": "agentic incident workflow · 24×7",   "trend": "up"   },
+    { "label": "api latency cut", "value": 83,  "suffix": "%",      "sub": "p99 on hot path · MySQL JSON index", "trend": "down" },
+    { "label": "routes automated","value": 95,  "suffix": "%",      "sub": "N concurrent managers · optimistic locking", "trend": "up" },
+    { "label": "incident SLA",    "value": 15,  "suffix": "m",      "sub": "met by autonomous remediation",      "trend": "up"   }
+  ],
+  "bioBlock": [
+    "> 3+ yrs · SDE @ Locus (IKEA), prev. Clover Bay",
+    "> stack: Java · Spring Boot · Go · Python · Kafka · MySQL",
+    "> ai infra: MCP · Claude 3.5 · RAG · Ollama · vector search",
+    "> recent wins:",
+    "   - cut prod CPU 15% via MySQL multi-value JSON index",
+    "   - shipped MCP context proxy (Go) for agent grounding",
+    "   - autonomous remediation for 200+ unique alert types",
+    "> currently: WhatsApp CRM backend · MCP proxy v2"
+  ],
+  "stack": [
+    { "group": "languages",   "items": "java · python · go · sql · node" },
+    { "group": "backend",     "items": "spring boot · reactive · fastapi · microservices" },
+    { "group": "distributed", "items": "kafka · saga · cqrs · resilience4j · gateway" },
+    { "group": "ai infra",    "items": "mcp · claude 3.5 · ollama · rag · vector" },
+    { "group": "data",        "items": "postgres · mysql · couchbase · redis · sqlite" },
+    { "group": "ops",         "items": "aws · gcp · docker · jenkins · groundcover" }
+  ],
+  "services": [
+    {
+      "id": "incident-agent",
+      "code": "INC-AGENT-01",
+      "name": "svc-incident-agent",
+      "status": "running",
+      "version": "v2.3.1",
+      "rps": 42,
+      "uptime": "312d 04h",
+      "summary": "MCP + Claude 3.5 workflow that triages production alerts autonomously by injecting live codebase context, historical Slack mitigations, telemetry traces, and diagnostic playbooks into each investigation.",
+      "star": {
+        "situation": "200+ unique alert types across NewRelic / Opsgenie / Groundcover. Each one drained 30–60 min of engineer time digging through logs, code, and prior Slack threads.",
+        "task":      "cut human investigation toil while still meeting a hard 15-minute SLA on critical alerts — without changing the alerting source.",
+        "action":    "built an MCP-tool stack the agent can call: live code search (semantic + grep), Slack mitigation history lookup, trace/log correlation, Jira auto-creation. Slack daemon orchestrates dispatch; Devin handles long-running fixes.",
+        "result":    "<b class=\"g-num\">~70%</b> drop in manual investigation time · <b class=\"g-num\">200+</b> alert types now triaged autonomously · <b class=\"g-num\">15-min</b> critical-SLA held without paging an engineer."
+      },
+      "tags": ["MCP", "Claude 3.5", "Groundcover", "Jira", "Slack"]
+    },
+    {
+      "id": "mcp-context-proxy",
+      "code": "MCP-RAG-02",
+      "name": "svc-mcp-context-proxy",
+      "status": "running",
+      "version": "v1.4.0",
+      "rps": 118,
+      "uptime": "96d 21h",
+      "summary": "Go localhost HTTP proxy intercepting Claude Code's MCP calls, caching upstream responses, and injecting token-budgeted code context from a local vector index into every tool response.",
+      "star": {
+        "situation": "agents calling MCP tools had no grounding in private codebases. Every prompt re-paid the cost of fetching context, and re-runs of identical calls hit the upstream provider needlessly.",
+        "task":      "deliver repo-aware, token-budgeted context to every MCP tool call without modifying the IDE, the agent, or the upstream MCP servers.",
+        "action":    "Go proxy on <code>localhost:7070</code> · SQLite response cache keyed by source + request-body hash · file watcher for incremental re-index · Ollama embeddings + cosine top-k search · <code>/patterns/feedback</code> loop promotes query shapes that produced useful Groundcover results.",
+        "result":    "<b class=\"g-num\">71%</b> cache hit rate on repeat tool calls · <b class=\"g-num\">~8ms</b> median context-injection latency · pattern catalog converts oncall sessions into reusable institutional memory."
+      },
+      "tags": ["Go", "SQLite", "Ollama", "RAG", "Vector Search"]
+    },
+    {
+      "id": "journey-planner",
+      "code": "DIST-SYS-03",
+      "name": "svc-journey-planner",
+      "status": "running",
+      "version": "v3.0.7",
+      "rps": 87,
+      "uptime": "540d 11h",
+      "summary": "Distributed permanent journey planning service that lets N concurrent field managers build weekly route plans against shared inventory of stops, without serial locking and without double-allocation.",
+      "star": {
+        "situation": "multiple field managers concurrently authored weekly journey plans against the same pool of stops. Naïve locking forced them into a serial queue; no locking caused double-allocation and downstream conflicts.",
+        "task":      "support concurrent route authoring at scale while honouring territory, capacity, and visit-frequency constraints — and keep a defensible audit trail for every assignment.",
+        "action":    "optimistic-locking allocation with bounded exponential backoff on conflict · per-stop ownership state with versioned writes · constraint engine for territory / capacity / visit-freq rules · append-only audit log for every assignment and conflict-resolution decision.",
+        "result":    "<b class=\"g-num\">95%</b> of routes generated without human intervention · <b class=\"g-num\">15+ hrs</b> saved per manager per week · zero double-allocation observed in audit window."
+      },
+      "tags": ["Java", "Spring Boot", "MySQL", "Optimistic Locking"]
+    },
+    {
+      "id": "json-mv-index",
+      "code": "DB-OPT-04",
+      "name": "svc-json-mv-index",
+      "status": "running",
+      "version": "v1.0.0",
+      "rps": 2410,
+      "uptime": "421d 09h",
+      "summary": "MySQL 8.0.17+ multi-value index over a nested JSON array column, migrating a high-traffic hot query from full JSON scan to direct B-tree lookup.",
+      "star": {
+        "situation": "a high-QPS hot query filtered rows by membership in a JSON-array column. Every call triggered a full column scan + JSON parse across millions of rows. p99 latency climbed, CPU saturated nightly, false-positive pager alerts followed.",
+        "task":      "bring the hot path under an index <em>without</em> denormalising the JSON column, splitting the table, or rewriting upstream callers.",
+        "action":    "added a MySQL 8.0.17+ multi-value index over the array path · rewrote the predicate from <code>JSON_CONTAINS</code> to <code>MEMBER OF</code> · verified <code>EXPLAIN</code> showed index use · rolled out behind a feature flag with shadow-traffic comparison.",
+        "result":    "<b class=\"g-num\">~15%</b> reduction in prod CPU on the affected stack · p99 on the hot query dropped from <b class=\"g-num\">~740ms → ~11ms</b> · <b class=\"g-num\">20–30</b> false-positive pager alerts/week eliminated."
+      },
+      "tags": ["MySQL", "JSON Index", "Performance", "Query Optimisation"]
+    },
+    {
+      "id": "whatsapp-crm",
+      "code": "BUILD-05",
+      "name": "svc-whatsapp-crm",
+      "status": "deploying",
+      "version": "v0.6.2-rc",
+      "rps": 0,
+      "uptime": "canary",
+      "summary": "Multi-tenant CRM built on the WhatsApp Business API — horizontal scaling with isolated tenant data, conversation state management, and webhook-driven message routing.",
+      "star": {
+        "situation": "SMBs needed a CRM on WhatsApp Business API but couldn't justify per-tenant infrastructure cost; existing offerings co-mingled tenant data or required heavyweight onboarding.",
+        "task":      "ship a multi-tenant CRM with strict tenant isolation, idempotent webhook handling, and a clean horizontal-scale boundary — runnable on a single GCP project.",
+        "action":    "Spring Boot service on GCP · schema-per-tenant isolation in PostgreSQL · idempotent webhook consumer keyed by message-id · finite-state machine modelling conversation lifecycle · async outbound delivery worker decoupled from inbound webhook ack path.",
+        "result":    "currently in canary · sub-second webhook ack on inbound messages · clean per-tenant scaling boundary, ready for first design-partner rollout."
+      },
+      "tags": ["Java", "Spring Boot", "WhatsApp Business API", "PostgreSQL", "GCP", "Webhooks"]
+    }
+  ],
+  "deploys": [
+    {
+      "sha": "#d4a2f81",
+      "date": "2024-05-14",
+      "status": "active",
+      "role": "Software Development Engineer · Locus (IKEA)",
+      "body": "Agentic observability workflows, autonomous remediation daemons, distributed journey planning, high-load queueing optimizations, MySQL multi-value JSON index migrations cutting prod CPU by 15%.",
+      "added":   ["agentic-remediation", "json-mv-index", "journey-planner-v3"],
+      "removed": ["manual-triage-loop"]
+    },
+    {
+      "sha": "#a1f70b3",
+      "date": "2022-06 → 2024-05",
+      "status": "archived",
+      "role": "Associate SDE · Clover Bay Technologies",
+      "body": "Reactive Spring Boot notification infrastructure, Kafka-based async delivery, Couchbase/Redis e-commerce systems, Python bulk APIs on GCP, services with 90% test coverage.",
+      "added":   ["reactive-notification-stack", "kafka-async-delivery", "couchbase-redis-stack"],
+      "removed": []
+    }
+  ],
+  "blogs": [
+    {
+      "title":     "Beyond RAG: AI Agents With Operational Memory",
+      "url":       "https://medium.com/@aakashkumar2001jha/beyond-rag-ai-agents-with-operational-memory-4dceb60b90e9",
+      "category":  "AI · Agents",
+      "readTime":  "5 min",
+      "summary":   "Why general-purpose LLMs stumble when dropped into real codebases — and what operational memory looks like as a substrate for less confused agents.",
+      "tags":      ["Claude Code", "LLM", "Developer Tools"]
+    },
+    {
+      "title":     "ClearCast: Architecture Notes from a Privacy-First Audio Enhancer",
+      "url":       "https://medium.com/@aakashkumar2001jha/clearcast-architecture-notes-from-a-privacy-first-audio-enhancer-d49647f31d42",
+      "category":  "Backend · Architecture",
+      "readTime":  "5 min",
+      "summary":   "Architectural decisions behind a privacy-first audio enhancement tool — the gap between recording simplicity and final audio polish, and how to keep user data local.",
+      "tags":      ["Java", "Spring Boot", "Whisper"]
+    },
+    {
+      "title":     "Mastering Reactive Tracing in Spring Boot 3",
+      "url":       "https://medium.com/@aakashkumar2001jha/mastering-reactive-tracing-in-spring-boot-3-a-comprehensive-guide-to-achieving-seamless-29c1229177ca",
+      "category":  "Backend · Observability",
+      "readTime":  "3 min",
+      "summary":   "A guide to wiring tracing through reactive Spring Boot 3 applications — propagating context across the async boundary without losing visibility.",
+      "tags":      ["Spring Boot", "Reactive", "Micrometer"]
+    }
+  ],
+  "contact": [
+    { "label": "email",    "value": "aakashkumarjha2000@gmail.com",       "href": "mailto:aakashkumarjha2000@gmail.com",  "copy": "aakashkumarjha2000@gmail.com" },
+    { "label": "linkedin", "value": "/in/imaakashjha",                    "href": "https://linkedin.com/in/imaakashjha", "copy": "https://linkedin.com/in/imaakashjha" },
+    { "label": "medium",   "value": "@aakashkumar2001jha",                "href": "https://medium.com/@aakashkumar2001jha", "copy": "https://medium.com/@aakashkumar2001jha" },
+    { "label": "leetcode", "value": "350+ solved",                        "href": "https://leetcode.com",                "copy": "leetcode profile" }
+  ],
+  "openTo": [
+    "> backend platforms",
+    "> ai infrastructure / agentic systems",
+    "> observability automation",
+    "> systems where ownership spans",
+    "   design · impl · perf · ops",
+    "> response time: < 24h"
+  ],
+  "logTail": [
+    { "lvl": "INFO", "msg": "incident-agent: alert NewRelic#payment-latency triaged · RCA generated in 4m21s" },
+    { "lvl": "INFO", "msg": "mcp-proxy: cache_hit_ratio=0.71  embedded_repos=4  ctx_budget=8k" },
+    { "lvl": "DEBG", "msg": "journey-planner: optimistic-lock retry  mgr=482  backoff=180ms" },
+    { "lvl": "INFO", "msg": "json-mv-index: hot query p99=11ms (was 740ms pre-migration)" },
+    { "lvl": "WARN", "msg": "whatsapp-crm: webhook retry 2/5  tenant=acme  next_in=4s" },
+    { "lvl": "INFO", "msg": "groundcover: pattern catalog promoted 3 queries to positive" },
+    { "lvl": "INFO", "msg": "incident-agent: pulled prior mitigations from #bft-on-call-track1" },
+    { "lvl": "DEBG", "msg": "kafka.async-delivery: lag=12  consumer=notif-svc-c3" },
+    { "lvl": "INFO", "msg": "deploy d4a2f81 succeeded · region=ap-south-1 · canary=1.5%" },
+    { "lvl": "INFO", "msg": "mcp-proxy: cosine_search top_k=6  median_latency=8ms" }
+  ]
+}
